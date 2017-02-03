@@ -1,0 +1,51 @@
+
+:-arithmetic_function(!/1).
+:-op(300,yf,!).
+:-arithmetic_function('!!'/1).
+:-op(300, yf, '!!').
+
+%	Zadanie 6
+%gramatyka za pomoca prologa
+%	S->e | aSb
+s-->[].
+s-->[a],s,[b].
+%To sie zamienia na klauzule prologowe.
+%expand_term\2 powie nam jak prolog to interpretuje
+%Przyklad uzycia:
+%	?- expand_term((s-->[]),X).
+%	s(X,X).
+%	?- expand_term((s-->[a],s,[b]),X).
+%	s([a|T],E):-
+%		s(T,N),
+%		N=[b|E].
+%	?- phrase(s,[a,a,b,b]).
+%		true.
+
+%tylko do sprawdzania bez nawrotow
+%nie nadaje sie do generowania
+s2-->[a],s2,[b],{!}.
+s2-->[].
+%Z liczeniem
+s3(X)-->[a],{!},s3(X1),{X is X1+1},[b].
+s3(0)-->[].
+
+
+
+%	Zadanie 7
+!(0,1):-!.
+!(Arg, Res):-
+	LessArg is Arg - 1,
+	!(LessArg, LessRes),
+	Res is LessRes*Arg.
+
+
+'!!'(0,0) :- !.
+'!!'(1,1) :- !.
+'!!'(X,Y) :-
+    0 is X mod 2,!,
+    X1 is X - 1,
+    '!!'(X1,Y).
+'!!'(X,Y) :-		
+    X1 is X - 2,
+    '!!'(X1,Y1),
+    Y is Y1 * X.

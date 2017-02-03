@@ -1,0 +1,40 @@
+
+% Zadanie 4
+even([]).
+even(	[_|[_|X]] ):-
+	even(X).
+
+palindrom(X):-
+	reverse(X,X).
+
+singleton([_]).
+
+% Zadanie 5
+
+head(H,[H|_]).
+
+last(L, H):-
+	append(_,[H],L),
+	
+tail(T,[_|T]).
+
+init(L, T):-
+	append(T,[_],L).
+
+myprefix(P,L):-
+	append(P,_,L).
+
+mysufix(L, S):-
+	append(_,S,L).
+
+% Zadanie 6
+sub(_, []).
+sub([H|X], [H|T]):-
+	sub(X,T).
+sub([_|X],[H|T]):-sub(X,[H|T]).
+
+% Zadanie 7
+perm([],[]).
+perm(X, [H|T]):-	
+	select(H,X,	M ),
+	perm(M, T).
