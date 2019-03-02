@@ -1,0 +1,24 @@
+%	Zadanie 1
+tree(leaf)--> "*",!.
+tree(node(A,B))--> "(", tree(A), tree(B), ")".
+
+%	Zadanie 2
+expr(Exit)-->
+	sexpr(A), expr(A, Exit).
+expr(Acc, Exit)-->
+	[*],!,sexpr(A),
+	{Acc1 = [Acc,*,A]},
+	expr(Acc1, Exit).
+expr(Acc, Acc)-->[].
+
+sexpr(a)-->[a],!.
+sexpr(b)-->[b],!.
+sexpr(Exit)-->[lP],!, expr(Exit), [rP].
+
+wyr-->swyr.
+wyr-->wyr, *, swyr.
+swyr--> [a],! .
+swyr--> [b],! .
+swyr-->['('],!,wyr,[')'].
+
+

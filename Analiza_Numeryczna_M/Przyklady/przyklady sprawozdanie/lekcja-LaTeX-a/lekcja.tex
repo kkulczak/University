@@ -1,0 +1,756 @@
+% Wersja z 10 paŸdziernika 2014 r.
+\documentclass[11pt,wide]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Styl dokumentu   : 'mwart'.
+% Rozmiar czcionki : '11pt' (domyœlnie '10pt', mo¿na u¿ywaæ tak¿e czcionki '12pt').
+% Numeracja wzorów : po lewej stronie - 'leqno'.
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% kodowanie latin2 (Linux), cp1250 (Windows)
+\usepackage[cp1250]{inputenc}  % Polskie literki...
+\usepackage[OT4,plmath]{polski}% Polskie tytu³y, data, bibliografia, itp.
+
+\usepackage{graphicx}    % Pakiet pozwalaj¹cy ,,wklejaæ'' grafikê...
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{epstopdf}
+
+\usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
+                               % Do³¹czamy zestaw ró¿nych przydatnych znaczków ...
+
+\usepackage{bbm}               % \mathbbm{N} - zbior liczb naturalnych
+\usepackage{hyperref}
+\usepackage{url}
+
+\usepackage{comment}           % Pakiet komentarzy wieloliniowych
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\date{Wroc³aw, \today}
+\title{\LARGE\textbf{Przybli¿anie sta³ej matematycznej e}\\ \LaTeX}
+\author{Kacper Kulczak}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Œrodowisko do pisania twierdzeñ.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheorem{tw}{Twierdzenie}
+\newtheorem{alg}{Algorytm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+\maketitle                % Utworzenie tytu³u.
+\thispagestyle{empty}     % Nie numerujemy pierwszej strony.
+\tableofcontents          % Spis treœci
+
+\section{Narzêdzia}
+
+\noindent MiKTeX (open source) + WindEdt (shareware, 30 dni). Z MiKTeXem instaluje siê darmowy edytor TeXworks.
+
+\section{Rozdzia³}
+
+\subsection{Podrozdzia³}
+\subsection*{Podrozdzia³ bez numeru}
+
+\subsubsection{Podpodrozdzia³}
+
+
+\section{Odstêpy}
+Jest          inaczej ni¿ w\\
+Wordzie.\newline\newline
+
+
+\noindent Instytut\hspace{4.75cm} Informatyki
+
+\vspace{1cm}
+
+
+
+
+
+
+\hspace{1cm} Uniwersytetu Wroc³awskiego
+
+
+
+\begin{center}
+Tekst wycentrowany\\
+\verb+\begin{center}...\end{center}+
+\end{center}
+
+\begin{flushright}
+Do prawej\\
+\verb"\begin{flushright}...\end{flushright}"
+\end{flushright}
+
+\begin{flushleft}
+Do lewej\\
+\verb"\begin{flushleft}...\end{flushleft}"
+\end{flushleft}
+
+
+\section{Ró¿ne kroje i wielkoœci czcionek.}
+
+Poni¿ej podano podstawowe kroje i wielkoœci czcionek dostêpne w \LaTeX u.
+W nawiasie zamieszczono deklaracje.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% '\\' - nowy wiersz.
+%
+% Rozkaz '\verb+TEKST+ powoduje, ¿e TEKST zostanie wydrukowany czcionk¹
+% maszynow¹, i ¿e - co najwa¿niejsze - w obrebie +...+ nie bed¹ uwzglêdniane
+% komendy LaTeXa.
+%
+% '\noindent' - bez akapitu.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\noindent
+\textbf{To jest czcionka pogrubiona} (\verb+\textbf{...}+)\\
+\textit{To jest kursywa} (\verb+\textit{...}+)\\
+\textbf{\textit{To jest pogrubiona kursywa}} (\verb+\textbf{\textit{...}}+)\\
+\textsl{To jest tekst pochy³y}. (\verb+\textsl{.   ..}+)\\
+\textsf{To jest styl bezszeryfowy}. (\verb+\textsf{...}+)\\
+\textsf{\textbf{To jest pogrubiony styl bezszeryfowy}}.
+(\verb+\textsf{\textbf{...}}+)\\
+\textsc{To s¹ kapitaliki}. (\verb+\textsc{...}+)\\
+\texttt{To jest typ maszynowy} (\verb+\texttt{...}+)\\
+\underline{Tekst podkreœlony.} (\verb+\underline{...}+)\hfill\verb+\hfill+\hfill
+Mo¿na robiæ przypisy\footnote{To jest przypis.}.\\[3ex] % <-- Takie coœ robi
+{\tiny test} (\verb+{\tiny ...}+)\\                     % odstêp wielkoœci 3ex,
+{\scriptsize test} (\verb+{\scriptsize ...}+)\\         % czyli trzech wysokoœci
+{\footnotesize test} (\verb+{\footnotesize ...}+)\\     % litery 'x' aktualnej
+{\small test} (\verb+{\small ...}+)\\                   % czcionki.
+{\normalsize test} (\verb+{\normalsize ...}+)\\
+{\large test} (\verb+{\large ...}+)\\
+{\Large test} (\verb+{\Large ...}+)\\
+{\LARGE test} (\verb+{\LARGE ...}+)\\
+{\huge test} (\verb+{\huge ...}+)\\
+{\Huge test} (\verb+{\Huge ...}+)
+
+\section{Kompilacja -- linia poleceñ, cytowanie z bibliografii}
+
+%\begin{table}
+%\caption{\label{}}
+%\begin{tabular}
+%\end{tabular}
+%\end{table}
+\begin{center}
+	\small
+	\begin{tabular}{|c|c|}
+	Komenda & Efekt\\ \hline\hline\hline
+	\verb"latex plik.tex [plik.dvi]" & kompilacja Ÿród³a programu
+	\TeX-owego do pliku \verb+*.dvi+\\
+	\verb"yap plik.dvi" & podgl¹d pliku \verb+*.dvi+\\ \hline
+	\verb"dvips plik.dvi -o plik.ps" & wygenerowanie dokument
+	postscriptowego (plik \verb+*.ps+)\\ \hline
+	\verb"dvipdfm plik.dvi" & wygenerowanie dokumentu w formacie PDF (plik
+	\verb+plik.pdf+)\\ \hline
+	\end{tabular}
+\end{center}
+Wiêcej informacji o systemie \LaTeX~mo¿na znaleŸæ np. w ksi¹¿kach \cite{JK} i
+\cite{LL}, które s¹ dostêpne w~naszej~bibliotece. W Internecie dostêpna jest
+ksi¹¿ka
+\href{http://tobi.oetiker.ch/lshort/lshort.pdf}{The Not So
+Short Introduction to \LaTeXe}, któr¹ mo¿na dostaæ przet³umaczon¹ na jêzyk
+polski:
+\href{ftp://sunsite.icm.edu.pl/pub/CTAN/info/lshort/polish/lshort2e.pdf}{Nie za
+krótkie wprowadzenie do systemu \LaTeXe}.
+
+\noindent Tak mo¿na siê odwo³aæ do trzeciego rozdzia³u: \cite[\S3]{JK}. Cytowaæ mo¿na artyku³y naukowe \cite{WL09}, a tak¿e
+strony internetowe \cite{II}.
+
+%\newpage
+
+
+\section{Wynumerowania i wypunktowania}
+
+\subsection{Wynumerowania}
+
+\begin{enumerate}
+\itemsep 3pt% ustawia odstêp pomiêdzy podpunktami
+\item pierwsze wyliczenie
+\item drugie wyliczenie
+\end{enumerate}
+
+\subsection{Wypunktowania}
+\begin{itemize}
+\itemsep 0pt
+\item pierwsze wyliczenie
+\item drugie wyliczenie
+\end{itemize}
+
+\noindent
+Rodzaj trzeci:
+\begin{description}
+\itemsep 0pt
+\item[Pawe³] imiê mêskie \ldots
+\item[Justyna] imiê ¿eñskie \ldots
+\end{description}
+
+\noindent
+Wyliczenia mo¿na zagnie¿d¿aæ (najwy¿ej czterokrotnie):
+
+\begin{itemize}
+\itemsep 0pt
+\item bia³y
+\item czerwony
+	\begin{itemize}
+		\item Ala
+		\item Ola
+	\end{itemize}
+\end{itemize}
+
+\begin{enumerate}
+	\itemsep 0pt
+	\item Grupa I
+	\begin{enumerate}
+		\itemsep 0pt
+		\item Jan Kowalski
+		\item Anna Nowak
+	\end{enumerate}
+	\item Grupa II
+	\begin{enumerate}
+		%\itemsep 0pt
+		\item Jan Nowak
+		\item Anna Kowalska
+	\end{enumerate}
+\end{enumerate}
+
+\section{Wzory matematyczne}\label{S:Wzory}
+
+Wzory mo¿na umieszczaæ w tekœcie tak: $\lim_{n\rightarrow\infty}\frac{1}{n^2}=0$, albo tak: $\displaystyle\lim_{n\rightarrow\infty}\frac{1}{n^2}=0$.
+$$
+	\lim_{n\to\infty}\frac{1}{n^2}=0.
+$$
+
+Mo¿liwa jest ich numeracja
+\begin{equation}\label{E:Wzor}
+\lim_{n\to\infty} (\frac{1}{a_{n^2}})^{3n}       =    0.
+\end{equation}
+\begin{equation*}
+\lim_{n\to\infty} \left\{\frac{1}{a_{n^2}}\right\}^{3n}       =    0.
+\end{equation*}
+i odwo³ywanie siê do nich: ze wzoru \eqref{E:Wzor} \textbf{nie wynika}, ¿e
+szereg
+\begin{equation}
+\sum_{n=0}^{\infty} a_{n}
+\end{equation}
+jest zbie¿ny.
+
+Inne przyk³ady:
+\begin{equation}
+\sum_{k=1}^{\infty}\frac{1}{n^2}=\frac{\pi^2}{6},
+\end{equation}
+\begin{equation}
+\sqrt[4]{90\sum_{n=1}^{\infty}\prod_{i=2}^{n^4}\frac{i-1}{i}}=\pi,
+\end{equation}
+\begin{equation}
+\int_{-\infty}^{\infty} e^{-x^2} \mathrm{d}x =\sqrt{\pi},
+\end{equation}
+\begin{equation}
+\vec{x}+\vec{y}=\vec{z},
+\end{equation}
+\begin{equation}
+\underbrace{a+\cdots+a}_{n\text{\ razy}},
+\end{equation}
+\begin{equation}
+\lim_{x\to\infty}\frac{\sqrt{x^2+1}-1}{2x}=\frac{1}{2},
+\end{equation}
+\begin{equation}
+\binom{n}{k}=\frac{n!}{(n-k)!\,k!}\in \mathbbm{N},\qquad
+\text{dla ka¿dych naturalnych wartoœci $n,k$},
+\end{equation}
+
+Mo¿na tak
+\begin{equation}
+\zeta(\alpha)=\sum_{i=1}^{a-1}\frac{1}{i^\alpha}+\frac{1}{(\alpha-1)
+a^{\alpha-1}}+\frac{1}{2a^\alpha}+\sum_{i=1}^{k-1}\frac{B_{2i}
+(\alpha)_{2i-1}}{(2i)!a^{\alpha+2i-1}}+\theta\frac{B_{2k}(\alpha)_{2k-1}}
+{(2k)!a^{\alpha+2k-1}}
+\end{equation}
+lub tak (\verb+\begin{multline} ... \\ ... \end{multline}+)
+\begin{multline}
+	\sin^2z+\cos^2z=\left(\frac{e^{iz}-e^{-iz}}{2i}\right)^2+
+	\left(\frac{e^{iz}+e^{-iz}}{2}\right)^2=-
+	\frac{(e^{iz}-e^{-iz})^2}{4}+\frac{(e^{iz}+e^{-iz})^2}{4}\\
+	=\frac{(e^{iz}+e^{-iz})^2-(e^{iz}-e^{-iz})^2}{4}=
+	\frac{\left[\left(e^{iz}+e^{-iz}\right)-
+	\left(e^{iz}-e^{-iz}\right)\right]
+	\left[\left(e^{iz}+e^{-iz}\right)+
+	\left(e^{iz}-e^{-iz}\right)\right]}{4}\\
+	=\frac{\left(2e^{-iz}\right)\left(2e^{iz}\right)}{4}=\frac{4e^{0}}{4}=1.
+\end{multline}
+a jeœli chcemy bez numeru, to tak
+(\verb+\begin{multline*} ... \\ ... \end{multline*}+):
+\begin{multline*}
+	\sin^2z+\cos^2z=\left(\frac{e^{iz}-e^{-iz}}{2i}\right)^2+
+	\left(\frac{e^{iz}+e^{-iz}}{2}\right)^2=-
+	\frac{(e^{iz}-e^{-iz})^2}{4}+\frac{(e^{iz}+e^{-iz})^2}{4}\\
+	=\frac{(e^{iz}+e^{-iz})^2-(e^{iz}-e^{-iz})^2}{4}=
+	\frac{\left[\left(e^{iz}+e^{-iz}\right)-
+	\left(e^{iz}-e^{-iz}\right)\right]\left[\left(e^{iz}+e^{-iz}\right)+
+	\left(e^{iz}-e^{-iz}\right)\right]}{4}\\
+	=\frac{\left(2e^{-iz}\right)\left(2e^{iz}\right)}{4}=\frac{4e^{0}}{4}=1.
+\end{multline*}
+
+Albo tak
+\begin{equation}
+\sqrt[n]{(\frac{a^{2k}+5}{b^3+c})+1}
+\end{equation}
+lub tak
+\begin{equation}
+\sqrt[n]{\left(\frac{a^{2k}+5}{b^3+c}\right)+1}.
+\end{equation}
+Wyrównanie:\\
+Niech $z_0=x_0+iy_0$. Rozwa¿my $z=x+iy_0$. Niech $z\to x_0$; wtedy
+\begin{align}
+f'(z_0) &=	\lim_{x\to x_0}\frac{f(x+iy_0)-f(x_0+iy_0)}{x+iy_0-(x_0+iy_0)}=
+			\lim_{x\to x_0}\frac{f(x+iy_0)-f(x_0+iy_0)}{x-x_0}
+		\\
+		\notag
+		&=\lim_{x\to x_0}\frac{\Re f(x+iy_0)-\Re f(x_0+iy_0)+i\Im
+		f(x+iy_0)-i\Im f(x_0+iy_0)}{x-x_0}
+		\intertext{\small z definicji zbie¿noœci punktów na
+		p³aszczyŸnie zespolonej}
+		\notag
+		  &=\lim_{x\to x_0}\frac{\Re f(x+iy_0)-\Re f(x_0+iy_0)}{x-x_0}+
+		  	i\lim_{x\to x_0}\frac{\Im f(x+iy_0)-\Im
+			f(x_0+iy_0)}{x-x_0}
+		\\
+		\notag
+		&=\frac{\partial \Re f}{\partial x}(x_0,y_0)+i\frac{\partial\Im
+		f}{\partial x}(x_0,y_0).
+\end{align}
+I jeszcze jedno wyrównanie:
+\begin{alignat*}{2}
+	\sin(-z) &= -\sin z \quad&(\text{nieparzystoœæ}),\\
+	\cos(-z) &= \cos z       &(\text{parzystoœæ}).
+\end{alignat*}
+
+
+Litery pisane w trybie matematycznym (\verb+\mathcal{...}+):
+\begin{equation}
+\mathcal{A,B,C,D,E,F}\ldots
+\end{equation}
+Niekiedy trzeba u¿ywaæ poni¿szych symboli (\verb+\mathbbm{...}+):
+\begin{equation}
+\mathbbm{N, Z, Q, I, Q, R, C},
+\end{equation}
+albo $\Re$ i~$\Im$.
+
+Mo¿na \textit{³adnie} zapisywaæ twierdzenia i dowody.
+\begin{tw}
+Je¿eli $B_nB_{n-1}\neq0$, to
+\begin{equation}\label{T:E:ZRek_C_n}%%%%%%%%%%%%%%%%%%%%%%
+C_n-C_{n-1}=(-1)^{n+1}\frac{a_1\cdot\ldots\cdot a_n}{B_nB_{n-1}}.
+\end{equation}
+\end{tw}
+\begin{proof}
+Stosuj¹c wielokrotnie twierdzenie poprzednie pokazujemy, ¿e
+\begin{equation}
+A_nB_{n-1}-B_nA_{n-1}=(-1)^{n+1}\prod_{i=1}^{n}a_i,
+\end{equation}
+a st¹d mamy ju¿ zwi¹zek \eqref{T:E:ZRek_C_n}.
+\end{proof}
+
+\section{Kod programu i opis algorytmu}
+
+\subsection{Kod przyk³adowego programu}
+Nastêpuj¹cy \textit{algorytm sumowania z~poprawkami} pozwala obliczyæ  z~du¿¹
+dok³adnoœci¹ sumê $s=\sum_{i=1}^{n}x_i$, w~standardowej arytmetyce
+\textit{fl}:
+
+\begin{verbatim}
+         s:=x[1];  c:=0;
+
+         for i from 2 to n
+         do
+             y:=c+x[i];
+             t:=s+y;
+             c:=(s-t)+y;
+             s:=t
+         end
+\end{verbatim}
+
+Dowodzi siê, ¿e $\mbox{\textit{fl}}(s)=\sum_{i=1}^{n}(1+\xi_i)x_i$, gdzie
+$|\xi_i|\leq 2\cdot2^{-t}+O(n2^{-2t})$.
+
+\subsection{Przyk³adowy algorytm w postaci listy kroków}
+Rozwa¿my zadanie rozwi¹zywania równania kwadratowego,
+\begin{equation}\label{E:rownanie}
+ax^2 + bx + c = 0.
+\end{equation}
+Wyró¿nik, który oblicza siê wzorem
+\begin{equation}\label{E:wyr}
+\Delta = b^2 - 4ac
+\end{equation}
+pozwala okreœliæ liczbê rzeczywistych rozwi¹zañ równania~\eqref{E:rownanie}.
+
+\noindent Je¿eli $\Delta > 0$, to równanie ma dwa rozwi¹zania rzeczywiste,
+\begin{equation}\label{E:rozw1}
+x_1 = \frac{-b+\sqrt{\Delta}}{2a}, \qquad x_2 = \frac{-b-\sqrt{\Delta}}{2a}.
+\end{equation}
+Je¿eli $\Delta = 0$, to równanie ma jedno rozwi¹zanie rzeczywiste,
+\begin{equation}\label{E:rozw2}
+x_0 = \frac{-b}{2a}.
+\end{equation}
+Je¿eli $\Delta < 0$, to równanie nie ma rozwi¹zañ rzeczywistych.
+
+\begin{alg}\,
+[\textsf{Rozwi¹zywanie równania kwadratowego}]\label{A:alg}\\
+\texttt{Wejœcie}:  $a, b, c \in \mathbbm{R}$\\
+\noindent \texttt{Wyjœcie}: zbiór rozwi¹zañ równania~\eqref{E:rownanie}\\
+
+\noindent \begin{description}
+\itemsep3pt
+\item[\texttt{Krok 1}.] Oblicz $\Delta$ wzorem~\eqref{E:wyr}.
+\item[\texttt{Krok 2}.] $s := \emptyset.$
+\item[\texttt{Krok 3}.] \mbox{}\\
+\textbf{if} ($\Delta > 0$) \textbf{then}
+\begin{itemize}
+\setlength{\itemindent}{0.6cm}
+\itemsep3pt
+\item[$\bullet$] oblicz $x_1, x_2$ wzorem~\eqref{E:rozw1};
+\item[$\bullet$] $s : = s \cup \left\{x_1, x_2\right\}$;
+\end{itemize}
+\textbf{else} \textbf{if} ($\Delta = 0$) \textbf{then}
+\begin{itemize}
+\setlength{\itemindent}{0.6cm}
+\itemsep3pt
+\item[$\bullet$] oblicz $x_0$ wzorem~\eqref{E:rozw2};
+\item[$\bullet$] $s : = s \cup \left\{x_0\right\}$.
+\end{itemize}
+\item[\texttt{Krok 4}.] Zwróæ $s$.
+\end{description}
+\end{alg}
+
+\section{Tabele}
+
+Warto te¿ wiedzieæ, ¿e mo¿na siê odwo³ywaæ do rozdzia³ów. Mianowicie
+w~rozdziale~\ref{S:Wzory} na stronie~\pageref{S:Wzory} omówiliœmy wzory
+matematyczne. W~tym rozdziale przedstawimy krótki kurs tworzenia tabel
+w~systemie \LaTeX.
+
+\begin{center}
+	\begin{tabular}{|l||cr|}\hline
+	Imiê i nazwisko & Numer albumu & Punkty \\ \hline
+	A. ABC          & 10           & 1\\
+	B. CDE          & 100          & 3.75\\
+	C. DEF          & 1000         & 0.3458\\ \hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{||c||c|c|c||} \hline
+\multicolumn{4}{||c||}{Funkcja $f(x)=\arctan x$} \\ \hline
+\multicolumn{4}{||c||}{Wêz³y równoodleg³e} \\ \hline
+Liczba & Metoda Lagrange'a & Metoda Neville'a & Metoda Newtona \\ \hline
+10 &  1.06571206217E-0004 &  1.06571206217E-0004 &  1.06571206217E-0004 \\
+\hline
+20 &  3.73131965082E-0007 &  3.73131965159E-0007 &  3.73131965172E-0007 \\
+\hline
+30 &  2.23092008061E-0009 &  2.23090005111E-0009 &  2.23090781134E-0009 \\
+\hline
+\end{tabular}
+\end{center}
+
+A teraz trochê wiêcej \textit{œwiat³a} (\textsl{powietrza})
+%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\arraystretch}{1.5}  % Zwiêkszamy wielkosæ komórki (o 1.5 raza).
+%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+\begin{tabular}{||c||c|c|c||} \hline
+\multicolumn{4}{||c||}{Funkcja $f(x)=\arctan x$} \\ \hline
+\multicolumn{4}{||c||}{Wêz³y równoodleg³e} \\ \hline
+Liczba & Metoda Lagrange'a & Metoda Neville'a & Metoda Newtona \\ \hline
+10 &  1.06571206217E-0004 &  1.06571206217E-0004 &  1.06571206217E-0004 \\
+\hline
+20 &  3.73131965082E-0007 &  3.73131965159E-0007 &  3.73131965172E-0007 \\
+\hline
+30 &  2.23092008061E-0009 &  2.23090005111E-0009 &  2.23090781134E-0009 \\
+\hline
+\end{tabular}
+\end{center}
+%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\arraystretch}{1}  % Powracamy do ustawieñ standardowych.
+%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{equation}
+f(x)
+\stackrel{\text{def}}{=}
+\begin{cases}
+  \sin(x), & \text{dla $x\leq 0$,}\\
+  0,       & \text{dla $x\geq 0$.}
+\end{cases}
+\end{equation}
+
+\begin{equation}
+\left[
+\begin{array}{cc}
+a_{11} & a_{12}\\
+a_{21} & a_{22}
+\end{array}
+\right]
++
+\left[
+\begin{array}{cc}
+b_{11} & b_{12}\\
+b_{21} & b_{22}
+\end{array}
+\right]
+=
+\left[
+\begin{array}{cc}
+c_{11} & c_{12}\\
+c_{21} & c_{22}
+\end{array}
+\right]\in\mathbbm{R}^{2\times2}
+\end{equation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Znowu modyfikujemy wartoœæ '\arraystretch', która okreœla odstêp miêdzy
+% wierszami.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\arraystretch}{2}
+
+$$
+\begin{array}{*{3}{|l}|}\hline
+\displaystyle
+\alpha, \beta, \gamma, \delta, \epsilon, \ldots &
+\displaystyle
+\Gamma, \Delta, \Theta, \Lambda, \Xi, \Pi, \ldots &
+\displaystyle
+\pm, \mp, \times, \div, \ast, \star, \circ, \ldots\\
+\displaystyle
+\leq, \geq, \equiv, \sim, \approx, \in, \neq, \ldots &
+\displaystyle
+\leftarrow, \longleftarrow, \Leftarrow, \Longleftarrow,
+\rightarrow, \longrightarrow, \Rightarrow, \Leftrightarrow, \ldots &
+\displaystyle
+\aleph, \forall, \exists, \infty, \emptyset, \Re, \Im,\ldots\\
+\displaystyle
+\sum_{i=0}^{n}, \prod_{i=0}^{n}, \int_{1}^{2}, \oint_{1}^{2}, \bigcap,
+\bigcup,\ldots &
+\displaystyle
+\cos, \sin, \exp, \ln, \max_{x\in\mathbbm{R}}, \min_{x\in(0,1]},
+\sup_{a\in\cal A}, \ldots &
+\displaystyle
+\hat{a}, \bar{a}, \tilde{a}, \widetilde{a}, \breve{a}, \ldots\\
+\hline
+\end{array}
+$$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\arraystretch}{1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{table}[h]
+\captionsetup{margin=0pt, font={scriptsize}}
+\[
+\begin{array}{cccccc}
+    &0&0&\ldots&0& \\
+    0& c_{kk}&c_{k,k+1}&\ldots&c_{k,m-l}&0     \\
+    0& c_{k+1,k}&c_{k+1,k+1}&\ldots&c_{k+1,m-l}&0  \\
+    \multicolumn{6}{c}{\dotfill}\\    0& c_{m-l,k}&c_{m-l,k+1}&\ldots&c_{m-l,m-l}&0  \\
+     &0&0&\ldots&0&
+\end{array}
+\]	
+\caption{Tabela wielkoœci $c$ \label{Tab:C}}
+\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+
+\section{Rysunki -- otoczenie figure}
+
+Aby zapewniæ automatyczn¹ numeracjê i podpisy pod rysunkami niezbêdne jest u¿ycie otoczenia
+\textsf{figure}.
+\begin{verbatim}
+  \begin{figure}[po³o¿enie]
+    \includegraphics[opcje]{nazwapliku}
+    \caption{Podpis do rysunku}
+    \label{etykieta}
+  \end{figure}
+\end{verbatim}
+Parametr opcjonalny \texttt{po³o¿enie} zawiera wskazówki, w którym miejscu powinna
+zostaæ umieszczona ilustracja. Mo¿e on przyjmowaæ nastêpuj¹ce wartoœci:
+\begin{description}
+\item[t] -- na górze strony (top),
+\item[b] -- na dole strony (bottom),
+\item[h] -- jak najbli¿ej (w przybli¿eniu) tego miejsca (here),
+\item[p] -- na osobnej stronie.
+\end{description}
+
+Opcje mo¿na ³¹czyæ, np. [htbp]. Kolejnoœæ podania parametrów nie ma znaczenia. Kolejnoœæ przetwarzania to zawsze h-t-b-p.
+
+\noindent Na rysunku~\ref{fig:rysunek} przedstawiono pewn¹ krzyw¹.
+\begin{figure}[ht]
+  \begin{center}
+  \includegraphics[width=10cm,angle=-90]{rysunek}
+  \end{center}
+  \caption{Zrzut z \textsf{Maple-a}}
+  \label{fig:rysunek}
+\end{figure}
+
+\noindent Poni¿ej rysunki~\ref{fig:1}~i~\ref{fig:2}, w ramach rysunku~\ref{fig:fig3}.
+
+\newpage
+\begin{figure}[ht]
+        \centering
+        \begin{subfigure}[ht]{0.44\textwidth}
+                \includegraphics[width=\textwidth]{fig1}
+                \caption{Pierwszy rysunek}
+                \label{fig:1}
+        \end{subfigure}%
+        \begin{subfigure}[ht]{0.44\textwidth}
+                \includegraphics[width=\textwidth]{fig2}
+                \caption{Drugi rysunek}
+                \label{fig:2}
+        \end{subfigure}
+        \caption{Dwa rysunki}\label{fig:fig3}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Obrazki}
+
+
+\begin{center}
+\unitlength=1mm
+\special{em:linewidth 0.4pt}
+\linethickness{0.8pt}
+\fbox{
+\begin{picture}(80.00,40.00)
+\put(0,3.6){\line(1,0){80}}
+
+\put(20,10){\circle{12}}
+\put(65,10){\circle{12}}
+\put(20,10){\circle*{2}}
+\put(65,10){\circle*{2}}
+
+\put(5,10){\line(1,0){70}}
+\put(25,20){\line(1,0){50}}
+\put(25,20){\line(-6,-1){20}}
+\put(5,10){\line(0,1){6.7}}
+\put(75,10){\line(0,1){10}}
+
+\put(25,20){\line(1,1){10}}
+\put(35,30){\line(0,-1){10}}
+\put(35,30){\line(1,0){35}}
+\put(70,30){\line(1,-2){5}}
+\put(50,30){\line(0,-1){20}}
+\put(25,20){\line(1,-3){3.3}}
+
+\put(47,18){\oval(3,2)}
+\put(5,14.5){\oval(2,3)[l]}
+\put(75,14.5){\oval(2,4)[r]}
+
+\multiput(50,30)(2,0){11}{\line(0,-1){9.9}}
+\end{picture}
+}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\vspace{2cm}
+
+\noindent
+[\ldots ] Niech dany bêdzie zbiór $\displaystyle
+\Delta_{n,m}:=\{(i,j)\in{\mathbbm{N}}^2: 0\leq j\leq i, |n-i|<m-j \}.$
+\vspace{0.25cm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+\unitlength=1mm
+\special{em:linewidth 0.4pt}
+\linethickness{0.8pt}
+\begin{picture}(100.00,50.00)
+\put(10.00,0.00){\vector(0,1){50.00}}
+\put(5.00,05.00){\vector(1,0){94.67}}
+\put(55.00,35.00){\circle{2.00}}
+\put(55.00,30.00){\circle{2.00}}
+\put(55.00,25.00){\circle{2.00}}
+\put(55.00,20.00){\circle{2.00}}
+\put(55.00,15.00){\circle{2.00}}
+\put(55.00,10.00){\circle{2.00}}
+\put(55.00,05.00){\circle{2.00}}
+\put(60.00,30.00){\circle{2.00}}
+\put(60.00,25.00){\circle{2.00}}
+\put(60.00,20.00){\circle{2.00}}
+\put(60.00,15.00){\circle{2.00}}
+\put(60.00,10.00){\circle{2.00}}
+\put(60.00,05.00){\circle{2.00}}
+\put(65.00,25.00){\circle{2.00}}
+\put(65.00,20.00){\circle{2.00}}
+\put(65.00,15.00){\circle{2.00}}
+\put(65.00,10.00){\circle{2.00}}
+\put(65.00,05.00){\circle{2.00}}
+\put(70.00,20.00){\circle{2.00}}
+\put(70.00,15.00){\circle{2.00}}
+\put(70.00,10.00){\circle{2.00}}
+\put(70.00,05.00){\circle{2.00}}
+\put(75.00,15.00){\circle{2.00}}
+\put(75.00,10.00){\circle{2.00}}
+\put(75.00,05.00){\circle{2.00}}
+\put(80.00,10.00){\circle{2.00}}
+\put(80.00,05.00){\circle{2.00}}
+\put(85.00,05.00){\circle{2.00}}
+\put(50.00,30.00){\circle{2.00}}
+\put(50.00,25.00){\circle{2.00}}
+\put(50.00,20.00){\circle{2.00}}
+\put(50.00,15.00){\circle{2.00}}
+\put(50.00,10.00){\circle{2.00}}
+\put(50.00,05.00){\circle{2.00}}
+\put(45.00,25.00){\circle{2.00}}
+\put(45.00,20.00){\circle{2.00}}
+\put(45.00,15.00){\circle{2.00}}
+\put(45.00,10.00){\circle{2.00}}
+\put(45.00,05.00){\circle{2.00}}
+\put(40.00,20.00){\circle{2.00}}
+\put(40.00,15.00){\circle{2.00}}
+\put(40.00,10.00){\circle{2.00}}
+\put(40.00,05.00){\circle{2.00}}
+\put(35.00,15.00){\circle{2.00}}
+\put(35.00,10.00){\circle{2.00}}
+\put(35.00,05.00){\circle{2.00}}
+\put(30.00,10.00){\circle{2.00}}
+\put(30.00,05.00){\circle{2.00}}
+\put(25.00,05.00){\circle{2.00}}
+\put(55.00,40.00){\circle*{2.00}}
+\put(65.00,45.00){\makebox(0,0)[cc]{$(n,m)$}}
+\put(90.00,25.00){\makebox(0,0)[cc]{$\Delta_{n,m}$}}
+\end{picture}
+\end{center}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\newpage
+%\thispagestyle{empty}
+\begin{thebibliography}{9}
+\itemsep2pt
+\bibitem{JK} J. Kucharczyk, Wprowadzenie do systemu komputerowego
+             sk³adu tekstów drukarskich \LaTeX, Wydawnictwo Uniwersytetu
+             Wroc³awskiego, Wroc³aw 1994.
+
+\bibitem{LL} L. Lamport, \LaTeX -- System przygotowywania dokumentów,
+             Ariel, Kraków 1992.
+
+\bibitem{WL09}  P. Wo\'zny,  S. Lewanowicz,  Multi-degree reduction of B\'ezier curves
+		with constraints, using dual Bernstein basis polynomials,
+		Computer Aided Geometric Design 26 (2009), 566--579.
+
+\bibitem{II} \url{http://www.ii.uni.wroc.pl}   (ostatni dostêp do strony 2014-09-23).
+
+\end{thebibliography}
+
+\end{document}
