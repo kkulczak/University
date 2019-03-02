@@ -1,0 +1,4 @@
+[submodule "ai_validator"]
+	path = ai_validator
+	url = https://github.com/janchorowski/ai_validator.git
+	branch = summer18

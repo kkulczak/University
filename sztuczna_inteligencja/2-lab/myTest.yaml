@@ -1,0 +1,15 @@
+zad2:
+  defaults:
+    timeout: 10 # second
+    input_file: zad_input.txt
+    output_file: zad_output.txt
+  validator: sokoban_validator
+  cases:
+    - inp: |
+        WWWWWWWW
+        WWW..WWW
+        WGB..BGW
+        WWW.KWWW
+        WWWWWWWW
+        WWWWWWWW
+      out: 1
